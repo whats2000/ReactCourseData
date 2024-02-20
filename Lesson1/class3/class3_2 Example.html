@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Inject Data in JSX</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    const user = {
+        name: "John Doe",
+        age: 25
+    };
+
+    const textStyle = {
+        color: "red",
+        fontSize: "20px"
+    };
+
+    // 你可以在 JSX 中使用 JavaScript 表達式，只要把它包裹在大括號 ({}) 中即可。
+
+    // 問題：在 JSX 中哪裡可以使用 JavaScript 表達式？
+    // 答案：你可以在 JSX 中的元素屬性和子節點中使用 JavaScript 表達式。
+    // 1. 元素屬性，這是用於控制元素的屬性。
+    // 2. 子節點，這主要用於渲染動態數據。
+
+    // 問題：大括號 ({}) 中可以寫什麼？
+    // 答案：你可以在大括號 ({}) 中寫任何有效的 JavaScript 表達式。
+    // JavaScript 的表達式是一個可以求值為一個值的有效 JavaScript 代碼。
+    // 是表達式：變數、常數、字符串、數組、對象、函數、函數調用、計算等。
+    // 不是表達式：if 陳述句、for 迴圈、while 迴圈、switch case、宣告等。
+
+    // 範例：在 JSX 中使用 JavaScript 表達式
+    const fullElementJsx = (
+        <div id="one">
+            {/* 典型使用在針對不同用戶的歡迎詞 */}
+            <h1>Welcome, {user.name}</h1>
+            <p>You are {user.age} years old.</p>
+
+            {/* Note: JSX 可以渲染整數 */}
+            <p>渲染`123`: {123}</p>
+
+            {/* Note: JSX 也可以渲染字符串 */}
+            <p>渲染`'Text'`: {'Text'}</p>
+
+            {/* Note: JSX 可以渲染數組，但它會將每個元素視為一個子節點來渲染。 */}
+            <p>渲染`[4, 5, 6]`: {[4, 5, 6]}</p>
+
+            {/* Note: JSX 可以渲染 NaN 和 Infinity */}
+            <p>渲染`NaN`: {NaN}</p>
+            <p>渲染`Infinity`: {Infinity}</p>
+
+            {/* Note: JSX 不能直接渲染布爾值、未定義和空值。 */}
+            <p>渲染`true``undefined``null`: {true}{undefined}{null}</p>
+
+            {/* Note: JSX 不能直接渲染對象，它會引發錯誤。 */}
+            {/* <p>{user}</p> */}
+
+            {/* Note: 如果你將對象轉換為字符串，它就可以渲染對象。 */}
+            <p>渲染`JSON.stringify(user)`: {JSON.stringify(user)}</p>
+
+            {/* Note: 也可以在屬性中使用對象 */}
+            <p style={textStyle}>This is a text with style.</p>
+
+            {/* Note: JSX 不能直接渲染函數，它會引發警告。 */}
+            {/* <p>{() => {}}</p> */}
+
+            {/* Note: 它會渲染函數的返回值 */}
+            <p>{(() => {return "This is a function."})()}</p>
+
+            {/* Note: 我們可以直接在大括號中聲明函數，但是必須使用箭頭函數。 */}
+            {/* Note: 它主要用於聲明事件處理程序。 */}
+            <button onClick={() => {alert("This is a function.")}}>Click Me!</button>
+        </div>
+    );
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(fullElementJsx);
+</script>
+</html>

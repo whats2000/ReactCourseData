@@ -55,14 +55,14 @@ React的設計哲學和強大的功能集，使其成為當今Web開發的首選
 
 以下是本次課程的大綱：
 - class1: JavaScript ES6, ES7的語法介紹
-  - 在這個小節中，我們將介紹一些ES6和ES7的新特性，這些特性在React開發中非常有用。
-  - 額外補充：TypeScript介紹 (因為越來越多的React項目開始使用TypeScript開發)
+  1. 在這個小節中，我們將介紹一些ES6和ES7的新特性，這些特性在React開發中非常有用。
+  2. 額外補充：TypeScript介紹 (因為越來越多的React項目開始使用TypeScript開發)
 - class2: 了解 React 的基本概念
-  - 在這個小節中，我們將介紹React的基本概念，這能更好理解React的運作原理。並與DOM操作做比較。
-- class3: 使用 JSX
-  - 在這個小節中，我們將介紹如何在React中使用JSX，這是React開發中的一個重要概念。
-- class4: 在 JSX 中動態注入數據
-  - 在這個小節中，我們將介紹如何在JSX中動態注入數據，你需要掌握到底能注入哪些數據。
+  1. 在這個小節中，我們將介紹React的基本概念，這能更好理解React的運作原理。並與DOM操作做比較。
+  2. 在這個小節中，我們將實際演示
+- class3: 引入 JSX 和 Babel
+  1. 在這個小節中，我們將介紹如何在React中使用JSX，這是React開發中的一個重要概念。
+  2. 在這個小節中，我們將介紹如何在JSX中動態注入數據，你需要掌握到底能注入哪些數據。
 
 # 參考資料
 - [React 官方網站](https://reactjs.org/)

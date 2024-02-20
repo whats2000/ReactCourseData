@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React JSX 課程講解</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- 記得要加上 Babel 的 CDN 連結才能使用 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<!-- 目標是在製作一個 div#root > div#one > p > "This a p tag text!", "Another Text!" 的元素 -->
+<!--
+div#root
+└── div#one
+    └── p
+        ├── "This a p tag text!"
+        └── "Another Text!"
+-->
+<div id="root"></div>
+<!-- 預期結果 -->
+<!--
+<div id="root">
+    <div id="one">
+        <p>
+            This a p tag text!Another Text!
+        </p>
+    </div>
+</div>
+-->
+</body>
+<!-- JSX 是 JavaScript 的語法擴充，它類似於模板語言，但具有完整的 JavaScript 功能。 -->
+<!-- JSX 的全名是 JavaScript XML。它與 React.createElement() 類似，但具有不同的語法。 -->
+<!-- 使用 React 不需要 JSX，它只是一個方便的工具，用於編寫 React 應用程序。 -->
+<!-- 若要使用 JSX，您需要將 script 標籤的 type 屬性更改為 text/babel。 -->
+<script type="text/babel">
+    // 是不是覺得這樣的寫法更簡潔呢？
+    const fullElementJsx = (
+        <div id="one">
+            <p>
+                This a p tag text!
+                Another Text!
+            </p>
+        </div>
+    );
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(fullElementJsx);
+</script>
+</html>

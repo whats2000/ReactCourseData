@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React JSX 練習</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+<!-- 目標是在製作一個 div#root > ul#list > li > "Item 1", "Item 2", "Item 3" 的元素 -->
+<!--
+div#root
+└── ul#list
+    ├── li
+    |   └── "Item 1"
+    ├── li
+    |   └── "Item 2"
+    └── li
+        └── "Item 3"
+-->
+<!-- 預期結果 -->
+<!--
+<div id="root">
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+</div>
+-->
+<div id="root"></div>
+</body>
+<script>
+    // 修改這裡的程式碼
+    const list = null;
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(list);
+</script>
+</html>
