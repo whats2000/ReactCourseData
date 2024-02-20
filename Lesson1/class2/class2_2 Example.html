@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React 元素課程講解</title>
+
+    <!-- 引入 React 和 ReactDOM 的開發版本 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+<!-- 目標是在製作一個 div#root > div#one > p > "This a p tag text!", "Another Text!" 的元素 -->
+<!--
+div#root
+└── div#one
+    └── p
+        ├── "This a p tag text!"
+        └── "Another Text!"
+-->
+<div id="root"></div>
+<!-- 預期結果 -->
+<!--
+<div id="root">
+    <div id="one">
+        <p>
+            "This a p tag text!"
+            "Another Text!"
+        </p>
+    </div>
+</div>
+-->
+</body>
+<script>
+    // Create an element in the div#root > div#one > p > "This a p tag text!", "Another Text!"
+    // Note: React.createElement() 會回傳一個 ReactElement (virtual DOM) 的物件，但是這個物件還沒有被渲染。
+    // 使用 createElement() 方法，傳遞元素的類型、屬性和子元素來建立 ReactElement。
+    // 例如，React.createElement('元素名稱', {"屬性名稱": "屬性值"}, 子元素1, 子元素2, ...);
+    const p = React.createElement('p', null, 'This a p tag text!', 'Another Text!');
+    const divOne = React.createElement('div', {"id": "one"}, p);
+
+    // 定義一個 div#root 的根元素，並且渲染 divOne 虛擬 DOM 元素
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(divOne);
+</script>
+</html>

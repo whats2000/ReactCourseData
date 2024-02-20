@@ -56,6 +56,7 @@ React的設計哲學和強大的功能集，使其成為當今Web開發的首選
 以下是本次課程的大綱：
 - class1: JavaScript ES6, ES7的語法介紹
   - 在這個小節中，我們將介紹一些ES6和ES7的新特性，這些特性在React開發中非常有用。
+  - 額外補充：TypeScript介紹 (因為越來越多的React項目開始使用TypeScript開發)
 - class2: 了解 React 的基本概念
   - 在這個小節中，我們將介紹React的基本概念，這能更好理解React的運作原理。並與DOM操作做比較。
 - class3: 使用 JSX
