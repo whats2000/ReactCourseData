@@ -6,6 +6,10 @@
 
 為了使瀏覽器能夠理解JSX，我們需要使用Babel進行轉譯。Babel是一個廣泛使用的工具，它可以將JSX和ES6（甚至更高版本的ES標準）代碼轉換成兼容絕大多數瀏覽器的JavaScript代碼。
 
+這是 Babel
+
+![Meme](images/Babel%20Meme.png)
+
 #### JSX的優勢
 
 - **直觀**：JSX的語法更接近於HTML，使得構建UI變得更直觀。
