@@ -15,9 +15,6 @@
 - **狀態（State）**和**屬性（Props）**：組件的兩個核心概念，用於控制組件渲染的內容。
 - **生命週期方法（Lifecycle Methods）**：特定時期自動被調用的組件方法，用於執行程式碼和管理組件的生命週期。
 
-![How React Works](images/how.png)
-圖片來源: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-
 ## 為什麼學習 React？
 
 React的設計哲學和強大的功能集，使其成為當今Web開發的首選技術之一：
@@ -25,7 +22,10 @@ React的設計哲學和強大的功能集，使其成為當今Web開發的首選
 - **高效**：React通過虛擬DOM來最小化真實DOM的操作，提高應用性能。
 - **靈活**：React可以與其他庫或框架（如React Router、React Bootstrap等）無縫集成，滿足不同項目的需求。
 - **生態系統**：豐富的社區、工具和庫使得開發React應用更加容易和高效。(把想要效果 + React 搜尋，然後就像 pip 一樣安裝即可)
-- **與業界接軌**：根據 Indeed.com 的數據，在招聘面試中，React是最受歡迎的前端框架之一。占比高達 57.3%，其次是 Angular 32.5% 和 Vue 9.7%。
+- **與業界接軌**：根據 JetBrains 的調查，React 是 2024 年最受歡迎的前端框架。
+
+![JavaScript Framework - Rank](https://blog.jetbrains.com/wp-content/uploads/2024/02/Frameworks-and-libraries-1.png)
+圖片來源 https://blog.jetbrains.com/webstorm/2024/02/js-and-ts-trends-2024/
 
 ![Javascript Framework - Stars](images/rank.png)
 目前 React 在 2023 年後超越 Vue，成為最受歡迎的前端框架。
@@ -67,6 +67,18 @@ React的設計哲學和強大的功能集，使其成為當今Web開發的首選
   ![Node Install](images/node.png)
   
   如果已安裝，確保你的 Node.js 版本是 20.0.0 或更高版本。因為我們有部分package需要使用新特性。
+
+### 開發工具
+- **編輯器**：
+  - 使用 [Visual Studio Code](https://code.visualstudio.com/) 作為開發工具。
+  - 使用 [WebStorm](https://www.jetbrains.com/webstorm/) 作為開發工具。
+- **輔助工具**：
+  - 安裝 [React Developer Tools](https://react.dev/learn/react-developer-tools)
+- **VS Code Extension**：
+  - 安裝 [實用插件](https://www.syncfusion.com/blogs/post/react-vs-code-extensions.aspx) 來幫助開發。
+
+![Rank of tool](https://blog.jetbrains.com/wp-content/uploads/2024/02/Popular-JS-TS-tools-1.png)
+圖片來源 https://blog.jetbrains.com/webstorm/2024/02/js-and-ts-trends-2024/
 
 ## 接下來的步驟
 

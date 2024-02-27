@@ -51,3 +51,8 @@ React引入了虛擬DOM（Virtual DOM）的概念，來優化DOM的操作。虛�
 * 跨平台：虛擬DOM的概念使得React能夠被應用到Web以外的平台，如React Native開發的移動應用。
 
 React通過虛擬DOM來抽象化複雜的DOM操作和更新過程，使得開發大型應用和高性能的界面變得更簡單、更快捷。
+
+
+![How React Works](images/how.png)
+具體原理圖 (參考用就好)
+圖片來源: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
