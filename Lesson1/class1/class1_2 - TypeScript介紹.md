@@ -97,4 +97,8 @@ console.log(identity(123));
 - **簡單遷移**：TypeScript是JavaScript的超集，這意味著你可以在TypeScript中使用JavaScript的所有特性。
 - **越來越多公司要求有使用TypeScript經驗**：TypeScript在一些大型項目中的使用率越來越高，很多公司都要求使用TypeScript來開發項目。
 
+![TypeScript Trend](https://blog.jetbrains.com/wp-content/uploads/2024/02/JS-TS-Develop.png)
+圖片來源 https://blog.jetbrains.com/webstorm/2024/02/js-and-ts-trends-2024/
 
+![GitHub Language Trend](https://github.blog/wp-content/uploads/2023/11/top-programming-languages-2023.png?resize=3840%2C2160?w=1024)
+圖片來源 https://github.blog/2023-11-08-the-state-of-open-source-and-ai/
