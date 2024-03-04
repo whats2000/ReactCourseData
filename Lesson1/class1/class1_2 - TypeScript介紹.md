@@ -2,6 +2,20 @@
 
 歡迎來到TypeScript世界！TypeScript是JavaScript的一個超集，它在JavaScript的基礎上增加了類型系統和一些其他特性，這使得JavaScript的開發變得更加容易和強大。本課程將引導你了解TypeScript中的現代語法特性以及ES6和ES7的特性，這些特性是現代前端框架（如React）開發的基礎。
 
+## 安裝TypeScript
+```bash
+npm install -g typescript
+```
+
+檢查安裝
+```bash
+tsc -v
+```
+
+安裝正確會顯示
+
+![TypeScript Version](images/Install.png)
+
 ## 編譯TypeScript
 
 - TypeScript程式碼需要編譯成JavaScript程式碼才能在瀏覽器中運行。你可以使用`tsc filename.ts`命令來編譯TypeScript程式碼，或者使用Webpack等打包工具來編譯和打包TypeScript程式碼。
@@ -44,6 +58,7 @@ console.log(greet(name, age)); // Hello, my name is John Doe and I am 30 years o
 - TypeScript使用class和interface來支持面向對象編程。
 - 類（Class）用於定義一個對象的結構和行為，接口（Interface）用於定義一個對象的結構。
 - 類可以實現接口，這樣可以讓類擁有接口中定義的屬性和方法。
+- 這個常用來定義 API 的返回值的結構。作為 Model 的定義。
 
 #### 示例
 
