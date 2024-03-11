@@ -141,7 +141,7 @@ const arr2 = [...arr1, 4, 5, 6];
 console.log(arr2); // [1, 2, 3, 4, 5, 6]
 
 const obj1 = {name: 'John Doe', age: 20};
-const obj2 = {...obj, favorite: 'JavaScript'};
+const obj2 = {...obj1, favorite: 'JavaScript'};
 console.log(obj2); // { name: 'John Doe', age: 20, favorite: 'JavaScript' }
 ```
 
@@ -221,6 +221,8 @@ class Animal {
     console.log(this.name + ' makes a noise.');
   }
 }
+
+const animalSample = new Animal("a");
 
 class Dog extends Animal {
   speak() {

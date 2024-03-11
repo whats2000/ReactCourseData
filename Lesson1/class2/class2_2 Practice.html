@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>React 元素練習</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 </head>
+
 <body>
-<!-- 目標是在製作一個 div#root > ul#list > li > "Item 1", "Item 2", "Item 3" 的元素 -->
-<!--
+    <!-- 目標是在製作一個 div#root > ul#list > li > "Item 1", "Item 2", "Item 3" 的元素 -->
+    <!--
 div#root
 └── ul#list
     ├── li
@@ -18,8 +20,8 @@ div#root
     └── li
         └── "Item 3"
 -->
-<!-- 預期結果 -->
-<!--
+    <!-- 預期結果 -->
+    <!--
 <div id="root">
     <ul id="list">
         <li>Item 1</li>
@@ -28,9 +30,27 @@ div#root
     </ul>
 </div>
 -->
-<div id="root"></div>
+    <div id="root"></div>
 </body>
 <script>
     // 你的JavaScript代碼將會放到這裡。
+    const item1 = React.createElement('li', null, 'Item 1');
+    const item2 = React.createElement('li', null, 'Item 2');
+    const item3 = React.createElement('li', null, 'Item 3');
+
+    const ulElement = React.createElement(
+        'ul',
+        { id: 'list' },
+        item1,
+        item2,
+        item3,
+    );
+
+    const rootElement = ReactDOM.createRoot(
+        document.getElementById('root'),
+    );
+
+   rootElement.render(ulElement);
 </script>
+
 </html>

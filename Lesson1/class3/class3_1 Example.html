@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>React JSX 課程講解</title>
@@ -9,18 +10,19 @@
     <!-- 記得要加上 Babel 的 CDN 連結才能使用 JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body>
-<!-- 目標是在製作一個 div#root > div#one > p > "This a p tag text!", "Another Text!" 的元素 -->
-<!--
+    <!-- 目標是在製作一個 div#root > div#one > p > "This a p tag text!", "Another Text!" 的元素 -->
+    <!--
 div#root
 └── div#one
     └── p
         ├── "This a p tag text!"
         └── "Another Text!"
 -->
-<div id="root"></div>
-<!-- 預期結果 -->
-<!--
+    <div id="root"></div>
+    <!-- 預期結果 -->
+    <!--
 <div id="root">
     <div id="one">
         <p>
@@ -48,4 +50,5 @@ div#root
     const divRoot = ReactDOM.createRoot(document.getElementById('root'));
     divRoot.render(fullElementJsx);
 </script>
+
 </html>
