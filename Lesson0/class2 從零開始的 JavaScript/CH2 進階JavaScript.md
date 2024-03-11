@@ -81,37 +81,68 @@ fetchData(data => {
 });
 ```
 
-### Promises
-Promise是一種更強大的處理
+### Promise
 
-異步操作的方式，它代表了一個最終可能完成或失敗的操作和其結果值。
+提供了一種更簡潔的方式來處理異步操作。還記得熟悉的`Ajax`嗎？`Promise`是個更現代化且更強大的替代方案。`Promise`對象代表一個異步操作的最終完成（或失敗）及其結果值。
+
+- **狀態**：
+  - `pending`（進行中）
+  - `fulfilled`（已成功）
+  - `rejected`（已失敗）
+
+`Promise`對象的狀態改變只有兩種可能：從`pending`變為`fulfilled`和從`pending`變為`rejected`。一旦狀態改變，將永遠保持這個狀態，不會再變。
+
+#### 示例：從服務器獲取數據
+
+以下示例展示了如何使用 `fetch` API（基於 Promise）從一個網絡API獲取數據。我們將數據抓取的結果輸出到控制台中。
 
 ```javascript
-function fetchData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Here is your data"), 1000);
-  });
-}
+// 使用fetch獲取API_URL資料
+const data = fetch(API_URL)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => console.log(data)) // { latest: '1122', history: { '1121': '112下', '1122': '112暑期' } }
+        .catch(error => console.error('Fetching error:', error));
 
-fetchData().then(data => console.log(data));
+// 由於fetch是非同步的，所以這裡的data是一個Promise對象，這個對象的狀態是pending
+console.log(data); // Promise { <pending> }
 ```
 
-### `async/await`
-`async/await`是基於Promise的語法糖，使異步代碼看起來像同步代碼。
+### async/await
+
+- 提供了一種更簡潔的方式來處理異步操作。
+- `async` 函數返回一個 `Promise` 對象，可以使用 `await` 來等待 `Promise` 對象的解析。
+- `async/await` 是基於 `Promise` 的一種更高級的異步操作解決方案。
+- 這在 React 開發中非常有用，可以更方便地處理異步操作。
+
+#### 示例
 
 ```javascript
-async function fetchData() {
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Here is your data"), 1000);
-  });
-  let result = await promise; // 等待直到promise解決
-  console.log(result);
+// 使用async/await獲取API_URL資料
+fetchData = async () => {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    console.log(data); // 通常處理獲取到的數據，然後保存到React狀態中
+  } catch (error) {
+    console.error('無法獲取數據', error);
+  }
 }
+
+fetchData().then(() => {
+  console.log('fetchData 完成');
+}).catch((error) => {
+  console.error('fetchData 失敗', error);
+});
 ```
 
 #### 練習題
 1. 使用Promise寫一個函數，模擬從伺服器獲取用戶名稱的操作。然後用`.then()`處理結果。
-2. 將上述函數改寫成使用`async/await`的形式。
+2. 將上述改寫成使用`async/await`的函數形式。
 
 ## 2.4 模塊化JavaScript
 
@@ -133,7 +164,7 @@ console.log(add(1, 2));
 1. 創建一個模塊，導出一個函數，該函數接受一個數字並返回其平方。
 2. 在另一個文件中導入該函數並使用它。
 
-## 類和繼承
+## 2.5 類和繼承
 
 ### 使用類定義對象
 
