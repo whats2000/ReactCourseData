@@ -123,7 +123,7 @@ console.log(data); // Promise { <pending> }
 
 ```javascript
 // 使用async/await獲取API_URL資料
-fetchData = async () => {
+fetchData = async function() {
   try {
     const response = await fetch(API_URL);
     const data = await response.json();
