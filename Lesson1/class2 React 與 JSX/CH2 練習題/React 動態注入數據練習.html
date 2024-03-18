@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React 動態注入數據練習</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    /**
+     * 1. 創建一個變量`message`，包含你想在頁面上顯示的歡迎信息。然後在JSX中渲染這個消息。
+     * 2. 定義一個函數`calculateArea`，接受一個半徑作為參數，計算並返回圓的面積。在JSX中調用這個函數並渲染結果，假設半徑為5。
+     * 3. 創建一個對象`person`，包含`firstName`和`lastName`。使用`JSON.stringify`在JSX中將這個對象渲染為字符串。
+     */
+        // 1. 創建一個變量`message`，包含你想在頁面上顯示的歡迎信息。然後在JSX中渲染這個消息。
+        // Your code here
+    const message = ...;
+    // End of your code
+
+    // 2. 定義一個函數`calculateArea`，接受一個半徑作為參數，計算並返回圓的面積。在JSX中調用這個函數並渲染結果，假設半徑為5。
+    // Your code here
+    const calculateArea = ...
+    // End of your code
+
+    // 3. 創建一個對象`person`，包含`firstName`和`lastName`。使用`JSON.stringify`在JSX中將這個對象渲染為字符串。
+    // Your code here
+    const person = {
+
+    }
+    // End of your code
+
+    // Your code here
+    const renderElement = (
+        <>
+
+        </>
+    );
+    // End of your code
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(renderElement);
+</script>
+</html>
