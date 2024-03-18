@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用邏輯與(&&)運算符</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    /**
+     * 創建一個變量`messages`，它是一個包含消息的數組。如果`messages`有元素，則在頁面上渲染"你有未讀消息"。
+     */
+
+    // Your code here
+    const messages = ["Hello", "How are you?"]; // 嘗試修改成空數組或刪除元素，看看頁面上的結果會如何變化
+    const renderElement = (
+        <div>
+            {...}
+        </div>
+    );
+    // End of your code
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(renderElement);
+</script>
+</html>
