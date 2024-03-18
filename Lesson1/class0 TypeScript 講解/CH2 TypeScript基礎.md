@@ -39,7 +39,7 @@ exactValue = 'other'; // 錯誤
 
 #### 練習題
 1. 定義一個字面量類型`Status`，它可以是字符串`'loading'`、`'success'`或`'error'`中的任何一個。
-2. 創建一個變量`status`，並賦給它`Status`類型的值。
+2. 創建一個變量`data`，並賦給它`Status`類型的值。
 
     記得移動目錄
     ```bash
