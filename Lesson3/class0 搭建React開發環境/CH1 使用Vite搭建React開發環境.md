@@ -1,8 +1,8 @@
-# 第五章：使用Vite搭建React開發環境
+# 第一章：使用Vite搭建React開發環境
 
 在這一節中，我們將學習如何使用Yarn和Vite來快速搭建一個React開發環境。Yarn是一個強大的JavaScript包管理工具，它提供了比npm更快的依賴安裝速度、更嚴格的包版本控制和更安全的包管理策略。
 
-## 5.1  安裝Yarn
+## 1.1  安裝Yarn
 
 1. **安裝Node.js**：Yarn需要Node.js環境。如果你還沒有安裝Node.js，請先從[Node.js官網](https://nodejs.org/)下載並安裝。
 
@@ -15,7 +15,7 @@
 ![Yarn](images/Yarn.png)
 圖片來源自 https://www.pngaaa.com/detail/4253253
 
-## 5.2 Yarn與npm的優勢
+## 1.2 Yarn與npm的優勢
 
 你或許很好奇我們在裝載`Node.js`的時候已經安裝了`npm`，為什麼還要安裝`Yarn`呢？這是因為`Yarn`在某些方面有著比`npm`更好的優勢：
 
@@ -24,7 +24,7 @@
 - **版本控制**：Yarn的`yarn.lock`文件記錄了被安裝依賴的確切版本，確保團隊成員或部署環境中的依賴安裝結果一致。
 - **用戶體驗**：Yarn提供了更友好的命令行界面，包括清晰的錯誤報告和過程提示。
 
-## 5.3 Yarn 使用
+## 1.3 Yarn 使用
 
 與 `npm` 類似，`Yarn` 也有一系列的命令可以用來管理項目的依賴。以下是一些常用的 `Yarn` 命令：
 
@@ -36,7 +36,7 @@
 
 實踐上，網路上寫的`npm`的指令，都可以用`yarn`來替代，例如`npm install`可以用`yarn add`來替代。
 
-## 5.4 使用Vite創建React項目
+## 1.4 使用Vite創建React項目
 
 Vite是一個現代化的前端開發工具，它提供了快速的開發環境和即時熱重載功能，讓開發者可以更快地構建React應用。下面我們將使用Yarn和Vite來初始化一個新的React項目。如果你熟悉早期的鷹架工具`create-react-app`，你會發現Vite的速度更快，並且提供了更好的開發體驗。
 
