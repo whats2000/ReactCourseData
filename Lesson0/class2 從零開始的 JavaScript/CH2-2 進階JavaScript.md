@@ -24,6 +24,29 @@ let copiedObject = { ...originalObject, b: 3 };
 箭頭函數提供了一種更簡潔的方式來寫函數表達式。它不僅語法簡潔，還改變了`this`關鍵字的綁定行為。
 - 這對 React 開發非常有用，因為在 React 中，`this` 關鍵字的綁定行為經常會引起問題。
 
+以下用法都是合規定的箭頭函數用法
+```javascript
+() => expression
+
+param => expression
+
+(param) => expression
+
+(param1, paramN) => expression
+
+() => {
+  statements
+}
+
+param => {
+  statements
+}
+
+(param1, paramN) => {
+  statements
+}
+```
+
 ```javascript
 // 函數表達式轉箭頭函數
 let add = number => number * number;
