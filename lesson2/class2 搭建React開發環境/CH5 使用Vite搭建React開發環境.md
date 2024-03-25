@@ -12,6 +12,9 @@
    ```
    上方命令的`-g`的意思是安裝在全域，這樣之後就不用再下載一次了
 
+![Yarn](images/Yarn.png)
+圖片來源自 https://www.pngaaa.com/detail/4253253
+
 ## 5.2 Yarn與npm的優勢
 
 你或許很好奇我們在裝載`Node.js`的時候已經安裝了`npm`，為什麼還要安裝`Yarn`呢？這是因為`Yarn`在某些方面有著比`npm`更好的優勢：
@@ -34,6 +37,10 @@
 實踐上，網路上寫的`npm`的指令，都可以用`yarn`來替代，例如`npm install`可以用`yarn add`來替代。
 
 ## 5.4 使用Vite創建React項目
+
+Vite是一個現代化的前端開發工具，它提供了快速的開發環境和即時熱重載功能，讓開發者可以更快地構建React應用。下面我們將使用Yarn和Vite來初始化一個新的React項目。如果你熟悉早期的鷹架工具`create-react-app`，你會發現Vite的速度更快，並且提供了更好的開發體驗。
+
+![Vite](images/Vite.svg)
 
 1. **移動到項目目錄**：首先，打開終端（Terminal），移動到你想要創建項目的目錄下。
    以系統管理員打開 PowerShell
