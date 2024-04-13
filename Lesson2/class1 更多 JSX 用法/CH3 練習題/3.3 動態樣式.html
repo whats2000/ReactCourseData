@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>動態樣式</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .level-1 {
+            background-color: lightgreen;
+        }
+
+        .level-2 {
+            background-color: lightyellow;
+        }
+
+        .level-3 {
+            background-color: lightcoral;
+        }
+
+        .level-other {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    /**
+     * 1. 根據變量`isError`的布爾值，動態更改一個`<p>`元素的文字顏色。
+     *    - 如果`isError`為`true`，設置文字顏色為紅色，表示錯誤信息，並顯示 (Error: Incorrect username or password)
+     *    - 如果為`false`，設置為黑色，表示正常信息。並顯示 (Welcome, user!)
+     * 2. 給定一個用戶級別`level`，根據不同的用戶級別設置一個`<div>`元素的背景色。
+     *    - 如果`level`為`1`，設置背景色為綠色；
+     *    - 如果為`2`，設置為黃色；
+     *    - 如果為`3`，設置為紅色。
+     *    - 其他情況設置為灰色。
+     */
+
+    // 1. 根據變量`isError`的布爾值，動態更改一個`<p>`元素的文字顏色。
+    // Your code here
+    const isError = true; // 嘗試修改這個變量的值，看看頁面上的結果會如何變化
+
+    const pStyle = {
+        color: isError ? 'red' : 'black'
+    };
+
+    const pElement = (
+        <p style={...}>
+            {/* 使用三元運算符來動態設置文字內容 'Error: Incorrect username or password' 或 'Welcome, user!' */}
+            {...}
+        </p>
+    );
+    // End of your code
+
+    // 2. 給定一個用戶級別`level`，根據不同的用戶級別設置一個`<div>`元素的背景色。
+    // Your code here
+    const level = 1; // 嘗試修改這個變量的值，看看頁面上的結果會如何變化
+
+    const divElement = (
+        <>
+            {/* 還記得在JSX中使用三元運算符嗎？ */}
+            <div className={...}>
+                {pElement}
+            </div>
+        </>
+    );
+    // End of your code
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(divElement);
+</script>
+</html>

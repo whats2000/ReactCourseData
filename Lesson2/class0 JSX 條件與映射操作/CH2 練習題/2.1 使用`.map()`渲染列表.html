@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用`.map()`渲染列表</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    /**
+     * 創建一個包含多個對象的陣列`users`，每個對象包含`id`和`name`。使用`.map()`在頁面上為每個用戶渲染一個列表項目。
+     */
+
+    // Your code here
+    const users = [
+        { id: 1, name: 'John' },
+        { id: 2, name: 'Jane' },
+        { id: 3, name: 'Tom' },
+    ];
+
+    const renderElement = (
+        <ul id="list">
+            {...}
+        </ul>
+    );
+    // End of your code
+
+    const divRoot = ReactDOM.createRoot(document.getElementById('root'));
+    divRoot.render(renderElement);
+</script>
+</html>
