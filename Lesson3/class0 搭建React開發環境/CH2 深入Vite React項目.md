@@ -68,7 +68,8 @@ React項目的結構，解析關鍵文件的功能，並介紹一些常用的開
 
 在項目中，我們可以使用一些常見的目錄名稱來幫助我們更好地組織和管理項目文件。
 大家可以根據自己的習慣和項目需求來選擇適合的目錄名稱。
-以下是一些常見的目錄名稱，讓你參考：
+
+以下是一些常見的約定俗成的目錄名稱：
 
 - `src`：源程式碼目錄，包含所有React組件和應用邏輯。
 - `public`：靜態資源目錄，包含所有不需要經過構建處理的靜態資源。
@@ -87,6 +88,10 @@ React項目的結構，解析關鍵文件的功能，並介紹一些常用的開
 - `layouts`：佈局目錄，包含所有應用的佈局組件。
 - `store`：狀態管理目錄，包含所有應用的狀態管理邏輯。
 - `router`：路由目錄，包含所有應用的路由配置。
+
+好的目錄結構可以幫助我們更好地組織和管理項目文件，提高程式碼的可讀性和可維護性。
+
+![IDE](images/約定名稱.png)
   
 
 ## 2.4 常用Yarn命令
@@ -114,6 +119,17 @@ Vite提供了強大且靈活的配置選項，允許你根據項目需求調整�
 - 打開`vite.config.ts`或`vite.config.js`文件，這是Vite的配置文件。
 - 配置文件導出一個配置對象，你可以在這裡添加或修改設定。例如，你可以更改構建路徑、配置代理、添加插件等。
 - [Vite官方文檔](https://vitejs.dev/guide/using-plugins.html)提供了完整的配置選項參考，幫助你根據需要進行調整。
+
+## 2.6 補充資料
+
+Material Icon Folder/File
+ - 因為很多資料夾都有大家共通約定俗成的名稱，所以我們可以使用 Material Icon 來協助我們更快速的辨識資料夾的用途。
+ - 不僅在 IDE 中，連瀏覽器也可以使用這個套件。
+ - VSCode 下載 [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) 套件。
+ - WebStorm 下載 [Atom Material Theme](https://plugins.jetbrains.com/plugin/10044-atom-material-icons) 套件。
+ - Chrome 下載 [Atom Material Icon](https://chrome.google.com/webstore/detail/atom-file-icons-web/pljfkbaipkidhmaljaaakibigbcmmpnc) 套件。
+
+![瀏覽器](images/約定名稱2.png)
 
 ## 練習
 
