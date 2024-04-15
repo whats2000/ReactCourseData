@@ -209,3 +209,16 @@ class Counter extends Component<{}, IState> {
      // 錯誤示例，這可能會造成不可預期的結果
      this.setState({ 狀態名稱: this.state.狀態名稱++ });
      ```
+5. 使用函數調用的狀態
+   - 與設置參數不同，如果要使用函數調用狀態取得當前狀態，始終都是最新的狀態。
+   - 且多次調用`this.setState()`時，React會保證每次調用都是基於最新的狀態。
+   - 這是因為React會在調用函數時，傳遞當前的狀態。
+     ```tsx
+     // 正確示例，這會使`狀態名稱`增加兩次
+     this.setState((state) => {
+       return { 狀態名稱: state.狀態名稱 + 1 };
+     });
+     this.setState((state) => {
+       return { 狀態名稱: state.狀態名稱 + 1 };
+     });
+     ```
