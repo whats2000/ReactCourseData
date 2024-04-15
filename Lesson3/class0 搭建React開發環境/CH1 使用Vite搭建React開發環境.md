@@ -40,7 +40,18 @@
 
 Vite是一個現代化的前端開發工具，它提供了快速的開發環境和即時熱重載功能，讓開發者可以更快地構建React應用。下面我們將使用Yarn和Vite來初始化一個新的React項目。如果你熟悉早期的鷹架工具`create-react-app`，你會發現Vite的速度更快，並且提供了更好的開發體驗。
 
-![Vite](images/Vite.svg)
+![Vite](https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg)
+
+圖片來源自 wikipedia
+
+- 除了React，Vite還支持Vue、Preact、Lit等框架。在本課程中，我們將使用React作為示範。
+- 我們將使用`SWC`作為Vite的程式框架，`SWC`是一個快速的JavaScript/TypeScript編譯器，可以幫助我們更快的編譯程式碼。其底層是用Rust語言實現的。具體可以快高達10倍以上。
+
+![SWC](images/SWC.png)
+
+圖片來源自 https://github.com/swc-project/swc
+
+### 1.4.1 創建一個新的React項目
 
 1. **移動到項目目錄**：首先，打開終端（Terminal），移動到你想要創建項目的目錄下。
    以系統管理員打開 PowerShell
@@ -119,6 +130,6 @@ Vite是一個現代化的前端開發工具，它提供了快速的開發環境�
 
    ![Step 6](images/Step6-2.png)
 
-### 練習
+### 1.4.2 練習
 
 - 跟隨上述步驟，使用Yarn和Vite初始化一個新的React項目。
