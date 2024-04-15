@@ -8,7 +8,7 @@ React項目的結構，解析關鍵文件的功能，並介紹一些常用的開
 ## 2.1 重要文件和目錄
 - `index.html`：項目的入口文件。在Vite項目中，`index.html`位於根目錄，直接引用了入口JS文件，通常是`main.jsx`或`main.tsx`。
 - `src`目錄：包含React組件的源程式碼，包括應用的主組件`App.jsx`或`App.tsx`。
-    - 以下是一個可能的`src`目錄結構：
+    - 以下是一個的`src`目錄結構：
   ```
    src
     │  App.css       這是App的樣式表
@@ -49,12 +49,13 @@ React項目的結構，解析關鍵文件的功能，並介紹一些常用的開
 - `.prettierrc.yaml`：Prettier的配置文件，用於定義程式碼格式化規則。
   - 如果沒有這個檔案，可以新增
   - 搭配 VSCode 的 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Code formatter 套件，可以自動格式化程式碼
+  - 在 WebStorm 中，可以在設定中搜尋 `Prettier`，並啟用 `On code reformat` 和 `On save`。
   - 以下是一個常用的設定
-  ```yaml
-  tabWidth: 2
-  semi: true
-  singleQuote: true
-  ```
+    ```yaml
+    tabWidth: 2
+    semi: true
+    singleQuote: true
+    ```
 
 ## 2.2 功能性文件和目錄
 - `node_modules`目錄：包含項目的依賴包，這些依賴包在安裝時會被放置在這個目錄下。
