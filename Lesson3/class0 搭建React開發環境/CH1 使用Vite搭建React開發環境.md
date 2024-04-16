@@ -56,11 +56,11 @@ Vite是一個現代化的前端開發工具，它提供了快速的開發環境�
 1. **移動到項目目錄**：首先，打開終端（Terminal），移動到你想要創建項目的目錄下。
    以系統管理員打開 PowerShell
    ```shell
-   cd ".\lesson2\class2 搭建React開發環境\"
+   cd ".\Lesson3\class0 搭建React開發環境\"
    ```
    或如果你有安裝bash
    ```bash
-   cd Lesson2/class2\ 搭建React開發環境/
+   cd Lesson3/class0\ 搭建React開發環境/
    ```
    如下圖
    ![Step 1](images/Step1.png)
