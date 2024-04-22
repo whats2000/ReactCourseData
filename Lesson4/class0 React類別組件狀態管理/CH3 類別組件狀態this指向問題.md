@@ -124,7 +124,7 @@ export default Counter;
        ```
 
 3. 在使用時額外包裹一層箭頭函數
-   - 在 JSX 中直接使用箭頭函數調用方法。
+   - 在 JSX 中直接使用箭頭函數調用方法，當我們需要傳遞參數時，這種方法非常有用。
    - 優點：編寫簡單，直觀。
    - 缺點：每次組件渲染時創建新的函數實例，可能導致不必要的重新渲染。
 
@@ -140,15 +140,15 @@ export default Counter;
          count: 0
        };
    
-       handleClick() {
-         this.setState({ count: this.state.count + 1 });
+       handleClick(num: number) {
+         this.setState({ count: this.state.count + num });
        }
    
        render() {
          return (
            <div>
              <p>{this.state.count}</p>
-             <button onClick={() => this.handleClick()}>Click me</button>
+             <button onClick={() => this.handleClick(5)}>Click me</button>
            </div>
          );
        }
