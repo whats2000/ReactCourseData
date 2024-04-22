@@ -22,11 +22,11 @@ React組件的狀態允許我們在組件內部管理可變數據。這些數據
 以下是一個在 TypeScript 中定義的計數器組件：
 
 ```tsx
-interface IState {
+interface ICounterState {
   count: number;
 }
 
-class Counter extends Component<{}, IState> {
+class Counter extends Component<{}, ICounterState> {
   constructor(props: {}) {
     super(props);
     // 初始化狀態，你可以將狀態視為組件的私有數據
@@ -82,12 +82,15 @@ class Counter extends Component<{}, IState> {
    - 在組件的構造函數中初始化狀態。這是設置組件初始狀態的地方。
    - 繼承自`Component`的類別組件，需要使用`<`和`>`來指定狀態的類型。
    - 在`<>`中，第一格參數是props的類型，第二個參數是狀態的類型。下方示例中props的類型是`{}`，狀態的類型是`IState`。
-   - props會在後面的章節中介紹。
+   - props會在後面的章節中介紹，你必需要在`constructor`中調用`super(props)`，即使你不使用props。
 
       ```tsx
       class MyComponent extends Component<{}, IState> {
+        // 規定構造函數的參數是props
         constructor(props: any) {
+          // 且該構造函數必須調用super(props)
           super(props);
+     
           this.state = {
             狀態名稱: 初始值  // 初始狀態值
           };
@@ -96,6 +99,7 @@ class Counter extends Component<{}, IState> {
       ```
 
     - 當然有ES7的寫法，可以直接在類別中定義狀態，不用在構造函數中定義。
+    - 實際上底層還是會轉換成上面的寫法，只是省略了一些步驟，包含 `super(props)` 之類等等。
     
       ```tsx
       class MyComponent extends Component<{}, IState> {
@@ -114,13 +118,19 @@ class Counter extends Component<{}, IState> {
 你可以用`this.state.狀態名稱`來訪問狀態。當狀態發生變化時，React會自動重新渲染組件。
 
   ```tsx
-  render() {
-    return (
-      <div>
-        <h1>{this.state.狀態名稱}</h1>
-      </div>
-    );
-  }
+  class MyComponent extends Component<{}, IState> {
+    state = {
+      狀態名稱: 初始值
+    };
+
+    render() {
+      return (
+        <div>
+          <h1>{this.state.狀態名稱}</h1>
+        </div>
+      );
+    }
+  }  
   ```
 
 ### 練習題：
@@ -138,30 +148,101 @@ class Counter extends Component<{}, IState> {
 
 - 第一個參數可以是一個新的狀態對象。
 - 也可以接受一個函數，這個函數接受一個參數`state`，返回一個新的狀態對象。
+- **請注意這裡必須用箭頭函數，否則`this`會指向undefined。課程後半會有詳細解釋。**
 
-   ```tsx
-   updateState = () => {
-     this.setState({ 狀態名稱: 新值 });
-   }
-   ```
-- 如果是以函數修改
   ```tsx
-  updateState = () => {
-    const func = (state) => {
-      return { 狀態名稱: state.狀態名稱 + 1 };
+  class MyComponent extends Component<{}, IState> {
+    // 定義操控狀態的方法，由於是私有方法，所以定義為private
+    private updateState: () => void;
+  
+    constructor(props: {}) {
+      super(props);
+  
+      this.state = {
+        狀態名稱: 初始值
+      };
+      
+      // 箭頭函數，這樣`this`會指向當前實例
+      this.updateState = () => {
+        this.setState({ 狀態名稱: 新值 });
+      }
+    }
+  
+    render() {
+      return (
+        <div>
+          <h1>{this.state.狀態名稱}</h1>
+          <button onClick={this.updateState}>Update</button>
+        </div>
+      );
+    }
+  }
+  ```
+- 當然有ES7的寫法，實際上與上方是等效的。以下是ES7的寫法：
+  
+  ```tsx
+  class MyComponent extends Component<{}, IState> {
+    state = {
+      狀態名稱: 初始值
     };
-    this.setState(func);
+  
+    // 箭頭函數，這樣`this`會指向當前實例，且直接定義於該視同是private
+    updateState = () => {
+      this.setState({ 狀態名稱: 新值 });
+    }
+
+    render() {
+      return (
+        <div>
+          <h1>{this.state.狀態名稱}</h1>
+          <button onClick={this.updateState}>Update</button>
+        </div>
+      );
+    }
+  }
+  ```  
+
+- JavaScript是可以把函數當作參數傳遞的，這樣可以更靈活的控制狀態的更新。
+- `this.setState()`方法第一個參數也可以是一個函數，這個函數接受一個參數`state`，不過為了防止搞混，我將其重新命名為`prevState`
+- 該函數返回的是一個新的狀態對象。
+  ```tsx
+  class MyComponent extends Component<{}, IState> {
+    state = {
+      狀態名稱: 初始值
+    };
+  
+    updateState = () => {
+      // 接受一個參數之前的狀態，返回則需要是新的狀態的對象
+      this.setState(
+        (prevState) => {
+          return { 狀態名稱: prevState.狀態名稱 + 1 };
+        }
+      );
+    }
+  
+    render() {
+      return (
+        <div>
+          <h1>{this.state.狀態名稱}</h1>
+          <button onClick={this.updateState}>Update</button>
+        </div>
+      );
+    }
   }
   ```
   
 ### 1.4.2 狀態的回調函數
 
 - `setState()`的第二個參數是一個回調函數，它會在狀態更新完成並且組件重新渲染後被調用。
+- 簡而言之，這個回調函數會在狀態更新完成後被調用，會在`render()`完成後被調用。
+- 只有在狀態更新後，才能獲取到最新的狀態，這是一個很好的時機點來執行一些後續操作。
+- 回調函數必須是一個箭頭函數，且沒有參數與返回值。
 
   ```tsx
   updateState = () => {
-    this.setState({ 狀態名稱: 新值 }, () => {
-      console.log('狀態更新完成');
+    this.setState({ 狀態名稱: 新值 }, // 第一個參數，新的狀態對象或一個返回新狀態對象的函數
+    () => {                          // 第二個參數，又稱回調函數，這邊也需要是箭頭函數
+      console.log('狀態更新完成，當前狀態是 ', this.state.狀態名稱);
     });
   }
   ```
@@ -176,7 +257,7 @@ class Counter extends Component<{}, IState> {
 1. 直接修改狀態：
    - 不要直接修改狀態，應該使用`this.setState()`方法來更新狀態。
    - `this.state`是React保護的，直接修改可能會導致不可預測的結果。
-   - TypeScript中，會直接報錯。
+   - [詳細說明](https://www.geeksforgeeks.org/why-should-we-not-update-the-state-directly/)
       ```tsx
       // 錯誤示例
       this.state.狀態名稱 = 新值;
@@ -204,7 +285,6 @@ class Counter extends Component<{}, IState> {
 
 4. 避免使用`狀態++`
    - `this.setState()`方法傳遞是賦予新的值，更改值不建議使用`++`或`--`，因為可能會造成不可預期的結果。
-   - TypeScript中，會直接報錯。
      ```tsx
      // 錯誤示例，這可能會造成不可預期的結果
      this.setState({ 狀態名稱: this.state.狀態名稱++ });
