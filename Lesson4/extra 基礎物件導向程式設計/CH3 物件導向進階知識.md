@@ -20,3 +20,51 @@
 因此，這三個術語在某些情況下可以指同一個類別，但在功能和用途上有所不同。
 
 ## 3.2 靜態方法和屬性
+
+在物件導向程式設計中，靜態方法和屬性是綁定到類別本身，而不是類別的實例。這意味著您不需要創建類別的實例來訪問這些方法和屬性。它們通常用於實現與類別的特定實例無關的功能。
+
+### 3.2.1 靜態屬性
+- **定義**：靜態屬性是直接與類別關聯的屬性，而不是與類別的任何對象關聯。它們在所有實例之間共享，意味著任何對靜態屬性的修改都會影響類別的所有實例。
+- **用途**：靜態屬性常用於儲存類別級別的數據，例如計數器、配置設置等。
+
+```typescript
+class Product {
+   id: number;
+   static productUUID = 0;
+
+   constructor() {
+      this.id = Product.productUUID++;
+   }
+}
+
+const product1 = new Product();
+const product2 = new Product();
+
+console.log(product1.id); // 0
+console.log(product2.id); // 1
+```
+
+### 3.2.2 靜態方法
+
+- 定義：
+  - 靜態方法是可以直接通過類別調用，而無需創建類別的實例的方法。
+  - 這代表你使用 `this` 關鍵字來訪問靜態方法中的其他靜態屬性和方法。
+- 用途：
+  - 靜態方法通常用於實現那些與類別的任何特定實例無關的功能，如工具函數或創建類別實例的工廠方法。
+
+```typescript
+class MathUtil {
+  static sum(x: number, y: number): number {
+    return x + y;
+  }
+
+  static subtract(x: number, y: number): number {
+    return x - y;
+  }
+}
+
+console.log(MathUtil.sum(10, 5));        // 輸出: 15
+console.log(MathUtil.subtract(10, 5));   // 輸出: 5
+```
+
+這些例子展示了靜態方法和屬性的實用性，特別是在不需要類別實例就能執行操作的情況下。靜態方法和屬性提高了程式碼的重用性並且提供了一種組織工具函數和共享資源的有效方式。
