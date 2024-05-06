@@ -67,4 +67,25 @@ console.log(MathUtil.sum(10, 5));        // 輸出: 15
 console.log(MathUtil.subtract(10, 5));   // 輸出: 5
 ```
 
-這些例子展示了靜態方法和屬性的實用性，特別是在不需要類別實例就能執行操作的情況下。靜態方法和屬性提高了程式碼的重用性並且提供了一種組織工具函數和共享資源的有效方式。
+## 3.3 更多 super 關鍵字的用法
+
+在 TypeScript 中，`super` 關鍵字用於調用父類別的方法或屬性。除了在建構子中調用父類別的建構子外，`super` 關鍵字還有其他用法：
+
+```typescript
+class Animal {
+  move(distance: number = 0) {
+    console.log(`Animal moved ${distance}m.`);
+  }
+}
+
+class Dog extends Animal {
+  move(distance: number = 5) {
+    console.log('Dog is barking.');
+    super.move(distance);
+  }
+}
+```
+
+在這個例子中，`Dog` 類別繼承自 `Animal` 類別，並 Overwrite 了 `move` 方法。
+- 在 `Dog` 類別的 `move` 方法中，我們使用 `super.move(distance)` 調用了父類別 `Animal` 的 `move` 方法。
+- 這是允許我們在子類別中使用了 Overwrite 的方法的同時，還能調用父類別的方法。
