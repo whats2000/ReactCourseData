@@ -79,9 +79,16 @@ const Greeting: React.FC<GreetingProps> = (props) => {
 
 由於函數組件本身無狀態，因此需要使用 Hooks 來管理狀態。在接下來的小節中，我們將介紹如何使用 `useState` Hook 管理狀態。
 
+![ReactHook](images/ReactHook.png)
+
 ### 1.3.1 何謂 Hook ?
 
 所謂 Hook，是 React 16.8 版本引入的新特性，用於在函數組件中使用 React 的功能。Hook 可以讓你在函數組件中使用狀態、生命週期方法、上下文等 React 功能。這使得函數組件具有了類別組件的功能，並且更加簡潔和易於維護。
+
+而其中的生命週期方法，有別於類別組件中的生命週期方法，Hook 提供了更加簡潔的生命週期方法，我們在接下來的章節中會進行介紹。
+
+![ReactHookLifeCycle](images/ReactHookLifeCycle.png)
+[圖片來源](https://wavez.github.io/react-hooks-lifecycle/)
 
 ### 1.3.2 使用 `useState` 管理狀態
 
