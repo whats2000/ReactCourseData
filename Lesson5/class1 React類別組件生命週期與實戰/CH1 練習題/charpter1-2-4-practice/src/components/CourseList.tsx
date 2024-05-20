@@ -16,7 +16,8 @@ class CourseList extends Component<{}, ICourseListStates> {
   componentDidMount() {
     /**
      * 透過 `fetch` 來取得課程資料，並將資料設定到 `state` 中。
-     * API 位址：`https://whats2000.github.io/NSYSUCourseAPI/1122/20240506_031415/page_1.json`
+     * API 位址：`https://whats2000.github.io/NSYSUCourseAPI/1122/20240517_101137/page_1.json`
+     * 以上位置若找不到變更，請自行修改替換 `20240517_101137` 成可用日期。查看當前最新時間：https://whats2000.github.io/NSYSUCourseAPI/1122/version.json
      */
     // You code here
 
