@@ -88,7 +88,7 @@ const Greeting: React.FC<GreetingProps> = (props) => {
 而其中的生命週期方法，有別於類別組件中的生命週期方法，Hook 提供了更加簡潔的生命週期方法，我們在接下來的章節中會進行介紹。
 
 ![ReactHookLifeCycle](images/ReactHookLifeCycle.png)
-[圖片來源](https://wavez.github.io/react-hooks-lifecycle/)
+[圖片來源](https://wavez.github.io/react-hooks-lifecycle/)，這是 React 18 版本的生命週期方法。(React 19 有些許變更，詳細後面課程會提到)
 
 ### 1.3.2 使用 `useState` 管理狀態
 
