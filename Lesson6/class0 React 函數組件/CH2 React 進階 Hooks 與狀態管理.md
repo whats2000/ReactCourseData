@@ -128,3 +128,153 @@ const Timer: React.FC = () => {
 - [https://whats2000.github.io/NSYSUCourseAPI/1122/20240517_101137/page_1.json](https://whats2000.github.io/NSYSUCourseAPI/1122/20240517_101137/page_1.json)
 - 以上位置若找不到變更，請自行修改替換 `20240517_101137` 成可用日期。查看當前最新時間：[https://whats2000.github.io/NSYSUCourseAPI/1122/version.json](https://whats2000.github.io/NSYSUCourseAPI/1122/version.json)
 
+## 2.2 使用 `useContext` 與全域狀態管理
+
+### 2.2.1 什麼是 Context
+
+在 React 應用中，我們經常需要在多個組件之間共享一些狀態，例如主題、認證信息或語言設置等。Context 提供了一種無需在每一層手動傳遞 props 的方式來共享這些狀態。
+
+Context 通常包括兩個部分：
+- Context Provider：提供狀態的組件。
+- Context Consumer：使用狀態的組件。
+
+```tsx
+import React from 'react';
+
+// 創建一個 Context
+const ThemeContext = React.createContext('light');
+
+const App: React.FC = () => {
+  return (
+    // 使用 Provider 提供狀態
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+const Toolbar: React.FC = () => {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+const ThemedButton: React.FC = () => {
+  // 使用 Consumer 獲取狀態
+  return (
+    <ThemeContext.Consumer>
+      {theme => <button className={theme}>Button</button>}
+    </ThemeContext.Consumer>
+  );
+}
+```
+
+在上面的範例中，我們創建了一個 `ThemeContext`，並使用 `ThemeContext.Provider` 提供了一個主題狀態。`ThemedButton` 組件通過 `ThemeContext.Consumer` 獲取並使用這個主題狀態。
+
+### 2.2.2 使用 `useContext` 管理全域狀態
+
+`useContext` 是 React 提供的 Hook，用於在函數組件中更方便地使用 Context。`useContext` 接受一個 Context 對象（由 `React.createContext` 創建），並返回該 Context 的當前值。
+
+```tsx
+import React, { useContext } from 'react';
+
+// 創建一個 Context
+const ThemeContext = React.createContext('light');
+
+const App: React.FC = () => {
+  return (
+    // 使用 Provider 提供狀態
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+const Toolbar: React.FC = () => {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+const ThemedButton: React.FC = () => {
+  // 使用 useContext Hook 獲取狀態
+  const theme = useContext(ThemeContext);
+  return <button className={theme}>Button</button>;
+}
+```
+
+在這個範例中，我們使用 `useContext` Hook 來獲取 `ThemeContext` 的當前值，這樣我們就不需要使用 `Context.Consumer` 組件，代碼更加簡潔。
+
+### 2.2.3 使用範例：全域認證狀態管理
+
+在實際應用中，我們經常需要在多個組件之間共享認證信息。下面是一個使用 `useContext` 管理全域認證狀態的範例。
+
+```tsx
+import React, { createContext, useContext, useState } from 'react';
+
+interface AuthContextType {
+  user: string | null;
+  login: (user: string) => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const AuthProvider: React.FC = ({ children }) => {
+  const [user, setUser] = useState<string | null>(null);
+
+  const login = (user: string) => setUser(user);
+  const logout = () => setUser(null);
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+const LoginButton: React.FC = () => {
+  const auth = useContext(AuthContext);
+  if (!auth) {
+    throw new Error('useContext must be used within a AuthProvider');
+  }
+  
+  return auth.user ? (
+    <button onClick={auth.logout}>Logout</button>
+  ) : (
+    <button onClick={() => auth.login('User')}>Login</button>
+  );
+};
+
+const UserProfile: React.FC = () => {
+  const auth = useContext(AuthContext);
+  if (!auth) {
+    throw new Error('useContext must be used within a AuthProvider');
+  }
+
+  return <div>{auth.user ? `Hello, ${auth.user}` : 'You are not logged in.'}</div>;
+};
+
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <UserProfile />
+      <LoginButton />
+    </AuthProvider>
+  );
+};
+```
+
+在這個範例中，我們創建了一個 `AuthContext`，並使用 `AuthProvider` 組件提供認證狀態。`LoginButton` 和 `UserProfile` 組件通過 `useContext` 獲取並使用這個狀態。
+
+### 2.2.4 練習題
+
+創建一個簡單的主題切換應用：
+1. 創建一個 `ThemeContext`，包含主題顏色和切換主題的函數。
+2. 使用 `ThemeContext.Provider` 提供當前主題和切換主題的函數。
+3. 創建一個按鈕，點擊後切換主題顏色。
+4. 使用 `useContext` 獲取當前主題並應用到樣式上。
