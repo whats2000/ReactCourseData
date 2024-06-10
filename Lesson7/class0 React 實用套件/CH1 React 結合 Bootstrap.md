@@ -6,6 +6,8 @@
 
 Bootstrap 是一個開源的前端框架，用於快速開發響應式和移動優先的網站。它提供了豐富的 CSS 和 JavaScript 元素，如網格系統、排版、表單、按鈕、導航等，使開發者能夠輕鬆創建一致且美觀的用戶界面。
 
+除了 Bootstrap 外，Ant Design、Material-UI 等也是常見的前端框架，它們提供了許多預定義的組件和樣式，可以幫助開發者快速構建用戶界面。
+
 ### 1.1.2 安裝 React-Bootstrap 和 Bootstrap
 
 React-Bootstrap 是一個用於在 React 應用中使用 Bootstrap 樣式的套件。它提供了與 Bootstrap 元素對應的 React 組件，使我們可以更加方便地在 React 中使用 Bootstrap 的樣式和功能。
