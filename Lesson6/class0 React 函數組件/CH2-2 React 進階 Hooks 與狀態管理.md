@@ -43,8 +43,7 @@ export default FocusInput;
 
 ### 2.3.3 使用場景與範例
 
-#### 2.3.3.1 訪問 DOM 元素
-
+訪問 DOM 元素
 `useRef` 最常見的用途是訪問 DOM 元素，例如在需要直接操作 DOM 元素的時候。
 
 示例：
@@ -76,7 +75,7 @@ const ScrollToTop: React.FC = () => {
 export default ScrollToTop;
 ```
 
-#### 2.3.3.2 保存可變值
+### 2.3.4 保存可變值
 
 `useRef` 也可以用於保存任何可變值，例如計時器 ID，這些值在組件重新渲染時不會改變。
 
@@ -106,7 +105,7 @@ const Timer: React.FC = () => {
 export default Timer;
 ```
 
-### 2.3.4 創造動態動畫
+### 2.3.5 創造動態動畫
 
 `useRef` 也可以用於創建動態動畫，在動畫中，我們可以使用 `useRef` 來保存對動畫元素的引用，並使用 `requestAnimationFrame`
 來更新動畫。
@@ -148,7 +147,7 @@ export default ScrollToReveal;
 在這個例子中，我們使用 `useRef` 創建了一個 `boxRef` 引用，並將其賦予一個 `<div>` 元素。使用 `requestAnimationFrame`
 方法，我們可以在每次動畫更新時訪問和更新該元素的 `style` 屬性，從而實現動態動畫效果。
 
-### 2.3.5 注意事項
+### 2.3.6 注意事項
 
 引用的更新不會觸發重渲染：
 - `useRef` 的主要特性之一是它的更新不會導致組件重新渲染。
@@ -160,7 +159,7 @@ export default ScrollToReveal;
 避免過度使用：
 - 儘管 `useRef` 很強大，但應該避免過度使用它來管理狀態，因為這可能會導致難以理解的狀態管理邏輯。
 
-### 2.3.6 練習題
+### 2.3.7 練習題
 
 創建一個函數組件 `ScrollToReveal`，該組件包含一個可以左右移動的方塊。點擊按鈕時，方塊從左側移動到右側。使用 `useRef`
 來保存方塊元素的引用，並使用 `requestAnimationFrame` 來更新動畫。
