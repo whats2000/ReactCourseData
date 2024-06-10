@@ -42,7 +42,7 @@ const DataFetcher: React.FC = () => {
     },
     // 參數二：依賴陣列
     [] // 空依賴陣列表示只在組件掛載和卸載時執行一次
-  ); 
+  );
 
   return (
     <div>
@@ -126,155 +126,253 @@ const Timer: React.FC = () => {
 - 將課程名稱(`name`)、學分(`credit`)、老師(`teacher`)、教室(`room`) 顯示在畫面上。
 - 架構是一個 `CourseList` 組件，裡面包含多個 `Course` 組件。
 - [https://whats2000.github.io/NSYSUCourseAPI/1122/20240517_101137/page_1.json](https://whats2000.github.io/NSYSUCourseAPI/1122/20240517_101137/page_1.json)
-- 以上位置若找不到變更，請自行修改替換 `20240517_101137` 成可用日期。查看當前最新時間：[https://whats2000.github.io/NSYSUCourseAPI/1122/version.json](https://whats2000.github.io/NSYSUCourseAPI/1122/version.json)
+- 以上位置若找不到變更，請自行修改替換 `20240517_101137`
+  成可用日期。查看當前最新時間：[https://whats2000.github.io/NSYSUCourseAPI/1122/version.json](https://whats2000.github.io/NSYSUCourseAPI/1122/version.json)
 
 ## 2.2 使用 `useContext` 與全域狀態管理
 
 ### 2.2.1 什麼是 Context
 
-在 React 應用中，我們經常需要在多個組件之間共享一些狀態，例如主題、認證信息或語言設置等。Context 提供了一種無需在每一層手動傳遞 props 的方式來共享這些狀態。
+在 React 應用中，我們經常需要在多個組件之間共享一些狀態，例如主題、認證信息或語言設置等。Context 提供了一種無需在每一層手動傳遞
+props 的方式來共享這些狀態。
 
 Context 通常包括兩個部分：
+
 - Context Provider：提供狀態的組件。
 - Context Consumer：使用狀態的組件。
 
-```tsx
-import React from 'react';
-
-// 創建一個 Context
-const ThemeContext = React.createContext('light');
-
-const App: React.FC = () => {
-  return (
-    // 使用 Provider 提供狀態
-    <ThemeContext.Provider value="dark">
-      <Toolbar />
-    </ThemeContext.Provider>
-  );
-}
-
-const Toolbar: React.FC = () => {
-  return (
-    <div>
-      <ThemedButton />
-    </div>
-  );
-}
-
-const ThemedButton: React.FC = () => {
-  // 使用 Consumer 獲取狀態
-  return (
-    <ThemeContext.Consumer>
-      {theme => <button className={theme}>Button</button>}
-    </ThemeContext.Consumer>
-  );
-}
-```
-
-在上面的範例中，我們創建了一個 `ThemeContext`，並使用 `ThemeContext.Provider` 提供了一個主題狀態。`ThemedButton` 組件通過 `ThemeContext.Consumer` 獲取並使用這個主題狀態。
+不過這個在實作上主要用在編寫 Library 或是較大型的專案，這邊你只要有個概念就好。
 
 ### 2.2.2 使用 `useContext` 管理全域狀態
 
-`useContext` 是 React 提供的 Hook，用於在函數組件中更方便地使用 Context。`useContext` 接受一個 Context 對象（由 `React.createContext` 創建），並返回該 Context 的當前值。
+`useContext` 是 React 提供的 Hook，用於在函數組件中更方便地使用 Context。`useContext` 接受一個 Context
+對象（由 `React.createContext` 創建），並返回該 Context 的當前值。
 
-```tsx
-import React, { useContext } from 'react';
+我們將把 Context 放置在專案中合適的位置，並將其拆分成多個組件，以便更好地展示實際專案中的使用方法。
 
-// 創建一個 Context
-const ThemeContext = React.createContext('light');
+1. 建立 `ThemeContext`：
 
-const App: React.FC = () => {
-  return (
-    // 使用 Provider 提供狀態
-    <ThemeContext.Provider value="dark">
-      <Toolbar />
-    </ThemeContext.Provider>
-  );
-}
+   在 `src/context/ThemeContext.tsx` 文件中定義 Context。
 
-const Toolbar: React.FC = () => {
-  return (
-    <div>
-      <ThemedButton />
-    </div>
-  );
-}
+    ```tsx
+    import React, { createContext, useState, useContext, ReactNode } from 'react';
+    
+    // 定義 Context 類型
+    interface ThemeContextType {
+      theme: string;
+      toggleTheme: () => void;
+    }
+    
+    // 創建 Context
+    const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+    
+    // 自定義 Hook，簡單的封裝 useContext
+    export const useTheme = () => {
+      const context = useContext(ThemeContext);
+      if (!context) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+      }
+      return context;
+    };
+    
+    // 提供 Context 的組件
+    interface ThemeProviderProps {
+      children: ReactNode;
+    }
+    
+    // ThemeProvider 組件，用於提供 Context
+    export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+      const [theme, setTheme] = useState('light');
+      
+      const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+      };
+      
+      return (
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+          {children}
+        </ThemeContext.Provider>
+      );
+    };
+    ```
 
-const ThemedButton: React.FC = () => {
-  // 使用 useContext Hook 獲取狀態
-  const theme = useContext(ThemeContext);
-  return <button className={theme}>Button</button>;
-}
-```
+2. 使用 Context：
 
-在這個範例中，我們使用 `useContext` Hook 來獲取 `ThemeContext` 的當前值，這樣我們就不需要使用 `Context.Consumer` 組件，代碼更加簡潔。
+   在 `src/components/ThemedButton.tsx` 文件中定義一個使用 Context 的按鈕組件。
+
+    ```tsx
+    import React from 'react';
+    import { useTheme } from '../context/ThemeContext';
+    
+    const ThemedButton: React.FC = () => {
+      // 使用 useTheme Hook 獲取 Context
+      const { theme, toggleTheme } = useTheme();
+    
+      return (
+        <button 
+          onClick={toggleTheme} 
+          style={{
+            background: theme === 'light' ? '#fff' : '#333', 
+            color: theme === 'light' ? '#000' : '#fff'
+          }}>
+          Toggle Theme
+        </button>
+      );
+    };
+    
+    export default ThemedButton;
+    ```
+
+   在 `src/components/Header.tsx` 文件中定義一個使用 Context 的標題組件。
+
+    ```tsx
+    import React from 'react';
+    import { useTheme } from '../context/ThemeContext';
+    
+    const Header: React.FC = () => {
+      // 使用 useTheme Hook 獲取 Context
+      const { theme } = useTheme();
+    
+      return (
+        <header style={{ background: theme === 'light' ? '#eee' : '#444', padding: '10px' }}>
+          <h1 style={{ color: theme === 'light' ? '#000' : '#fff' }}>My App</h1>
+        </header>
+      );
+    };
+    
+    export default Header;
+    ```
+
+3. 整合到應用中：
+
+   在 `src/App.tsx` 文件中使用 `ThemeProvider` 來包裹整個應用，並使用 `ThemedButton` 和 `Header` 組件。
+
+    ```tsx
+    import React from 'react';
+    import { ThemeProvider } from './context/ThemeContext';
+    import ThemedButton from './components/ThemedButton';
+    import Header from './components/Header';
+    
+    const App: React.FC = () => {
+      return (
+        <ThemeProvider>
+          <Header />
+          <div style={{ padding: '20px' }}>
+            <ThemedButton />
+          </div>
+        </ThemeProvider>
+      );
+    };
+    
+    export default App;
+    ```
 
 ### 2.2.3 使用範例：全域認證狀態管理
 
 在實際應用中，我們經常需要在多個組件之間共享認證信息。下面是一個使用 `useContext` 管理全域認證狀態的範例。
 
-```tsx
-import React, { createContext, useContext, useState } from 'react';
+1. 建立 `AuthContext`：
 
-interface AuthContextType {
-  user: string | null;
-  login: (user: string) => void;
-  logout: () => void;
-}
+   在 `src/context/AuthContext.tsx` 文件中定義 Context。
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+    ```tsx
+    import React, { createContext, useState, useContext, ReactNode } from 'react';
+    
+    // 定義 Context 類型
+    interface AuthContextType {
+      user: string | null;
+      login: (user: string) => void;
+      logout: () => void;
+    }
+    
+    // 創建 Context
+    const AuthContext = createContext<AuthContextType | undefined>(undefined);
+    
+    // 自定義 Hook，簡單的封裝 useContext
+    export const useAuth = () => {
+      const context = useContext(AuthContext);
+      if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+      }
+      return context;
+    };
+    
+    // 提供 Context 的組件
+    interface AuthProviderProps {
+      children: ReactNode;
+    }
+    
+    // AuthProvider 組件，用於提供 Context
+    export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+      const [user, setUser] = useState<string | null>(null);
+    
+      const login = (user: string) => setUser(user);
+      const logout = () => setUser(null);
+    
+      return (
+        <AuthContext.Provider value={{ user, login, logout }}>
+          {children}
+        </AuthContext.Provider>
+      );
+    };
+    ```
 
-const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<string | null>(null);
+2. 使用 Context：
 
-  const login = (user: string) => setUser(user);
-  const logout = () => setUser(null);
+   在 `src/components/LoginButton.tsx` 文件中定義一個使用 Context 的登錄按鈕組件。
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    ```tsx
+    import React from 'react';
+    import { useAuth } from '../context/AuthContext';
+    
+    // 使用 Context 的組件
+    const LoginButton: React.FC = () => {
+      const auth = useAuth();
+      
+      return auth.user ? (
+        <button onClick={auth.logout}>Logout</button>
+      ) : (
+        <button onClick={() => auth.login('User')}>Login</button>
+      );
+    };
+    
+    export default LoginButton;
+    ```
 
-const LoginButton: React.FC = () => {
-  const auth = useContext(AuthContext);
-  if (!auth) {
-    throw new Error('useContext must be used within a AuthProvider');
-  }
-  
-  return auth.user ? (
-    <button onClick={auth.logout}>Logout</button>
-  ) : (
-    <button onClick={() => auth.login('User')}>Login</button>
-  );
-};
+   在 `src/components/UserProfile.tsx` 文件中定義一個使用 Context 的用戶資料組件。
 
-const UserProfile: React.FC = () => {
-  const auth = useContext(AuthContext);
-  if (!auth) {
-    throw new Error('useContext must be used within a AuthProvider');
-  }
+    ```tsx
+    import React from 'react';
+    import { useAuth } from '../context/AuthContext';
+    
+    // 使用 Context 的組件
+    const UserProfile: React.FC = () => {
+      const auth = useAuth();
+    
+      return <div>{auth.user ? `Hello, ${auth.user}` : 'You are not logged in.'}</div>;
+    };
+    
+    export default UserProfile;
+    ```
 
-  return <div>{auth.user ? `Hello, ${auth.user}` : 'You are not logged in.'}</div>;
-};
+3. 整合到應用中：
 
-const App: React.FC = () => {
-  return (
-    <AuthProvider>
-      <UserProfile />
-      <LoginButton />
-    </AuthProvider>
-  );
-};
-```
+   在 `src/App.tsx` 文件中使用 `AuthProvider` 來包裹整個應用，並使用 `LoginButton` 和 `UserProfile` 組件。
 
-在這個範例中，我們創建了一個 `AuthContext`，並使用 `AuthProvider` 組件提供認證狀態。`LoginButton` 和 `UserProfile` 組件通過 `useContext` 獲取並使用這個狀態。
-
-### 2.2.4 練習題
-
-創建一個簡單的主題切換應用：
-1. 創建一個 `ThemeContext`，包含主題顏色和切換主題的函數。
-2. 使用 `ThemeContext.Provider` 提供當前主題和切換主題的函數。
-3. 創建一個按鈕，點擊後切換主題顏色。
-4. 使用 `useContext` 獲取當前主題並應用到樣式上。
+    ```tsx
+    import React from 'react';
+    import { AuthProvider } from './context/AuthContext';
+    import LoginButton from './components/LoginButton';
+    import UserProfile from './components/UserProfile';
+    
+    const App: React.FC = () => {
+      return (
+        <AuthProvider>
+          <UserProfile />
+          <LoginButton />
+        </AuthProvider>
+      );
+    };
+    
+    export default App;
+    ```
