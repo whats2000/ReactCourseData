@@ -1,4 +1,4 @@
-~~# 第二章：Styled Components
+# 第二章：Styled Components
 
 ## 2.1 Styled Components 介紹
 
